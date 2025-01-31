@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import './Timer.css'; // Import the CSS file
+import './Timer.css';
+import Button from "../Button/Button";
 
-const Timer = ({ initialTime, onTimeUp, onTimerChange, isActive }) => {
-  const [time, setTime] = useState(initialTime); // Set the initial time
+const Timer = ({ onTimeUp, isActive }) => {
+  const [time, setTime] = useState(60);
   const [isTimerActive, setIsTimerActive] = useState(isActive);
-  const [timer, setTimer] = useState(initialTime); // Default 60 seconds
+  const [timer, setTimer] = useState(60);
 
 
   useEffect(() => {
-    setIsTimerActive(isActive); // Update the timer state when isActive changes
+    setIsTimerActive(isActive);
   }, [isActive]);
-
-  useEffect(() => {
-    setTime(initialTime); // Reset the timer when initialTime changes
-    setTimer(initialTime); // Reset the timer when initialTime changes
-  }, [initialTime]);
 
   useEffect(() => {
     let timerInterval;
@@ -25,17 +21,16 @@ const Timer = ({ initialTime, onTimeUp, onTimerChange, isActive }) => {
     } else if (time === 0) {
       setIsTimerActive(false);
       if (onTimeUp) {
-        setTime(initialTime)
-        onTimeUp(); // Trigger the callback when time is up
+        setTime(timer)
+        onTimeUp();
       }
     }
     return () => clearInterval(timerInterval);
   }, [isTimerActive, time, onTimeUp]);
 
-  const startTimer = () => setIsTimerActive(true);
-  const pauseTimer = () => setIsTimerActive(false);
+  const pauseTimer = () => setIsTimerActive(!isTimerActive);
   const resetTimer = () => {
-    setTime(initialTime);
+    setTime(timer);
     setIsTimerActive(false);
   }
 
@@ -43,7 +38,7 @@ const Timer = ({ initialTime, onTimeUp, onTimerChange, isActive }) => {
     if (!isNaN(value) && value > 0) {
       setTime(Number(value));
       setTimer(Number(value));
-      if (onTimerChange) onTimerChange(Number(value)); // Notify the parent of the time change
+      setIsTimerActive(false)
     }
   };
 
@@ -54,18 +49,16 @@ const Timer = ({ initialTime, onTimeUp, onTimerChange, isActive }) => {
         {time}s
       </div>
       <div className="timer-controls">
-        <button onClick={startTimer}>Start</button>
-        <button onClick={pauseTimer}>Pause</button>
-        <button onClick={resetTimer}>Reset</button>
+        <Button onClick={pauseTimer}>{isTimerActive ? 'Pause' : 'Play'}</Button>
+        <Button onClick={resetTimer}>Reset</Button>
       </div>
       <div className="timer-input-container">
-        <button onClick={() => handleCustomTimerChange(30)}>30</button>
-        <button onClick={() => handleCustomTimerChange(60)}>60</button>
-        <button onClick={() => handleCustomTimerChange(120)}>120</button>
-        <button onClick={() => handleCustomTimerChange(180)}>180</button>
+        <Button onClick={() => handleCustomTimerChange(30)}>30</Button>
+        <Button onClick={() => handleCustomTimerChange(60)}>60</Button>
+        <Button onClick={() => handleCustomTimerChange(120)}>120</Button>
+        <Button onClick={() => handleCustomTimerChange(180)}>180</Button>
 
         <input
-            // type=""
             value={timer}
             onFocus={(event) => event.target.select()}
             onChange={(e) => handleCustomTimerChange(e.target.value)}

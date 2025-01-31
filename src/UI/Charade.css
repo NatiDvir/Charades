@@ -32,70 +32,7 @@
   gap: 20px;
 }
 
-.teams-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  gap: 20px;
-}
-
-.team-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 0;
-  font-size: 20px;
-  padding: 0;
-}
-
-.team-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-}
-
-.team-item span.team-name {
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.team-item .score-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.team-item .team-score {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-.team-list-card {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-
-  .team-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px;
-  }
-}
-
 /* Other general styles */
-.card {
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  width: 100%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
 .card-content {
   display: flex;
   flex-direction: column;
@@ -148,21 +85,6 @@
 }
 
 /* Button styling */
-.button {
-  background-color: #3498db;
-  color: white;
-  font-size: large;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.button:hover {
-  background-color: #2980b9;
-}
-
 .game-card-content {
   display: flex;
   flex-direction: column;
